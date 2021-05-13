@@ -5,8 +5,8 @@
     "description": "A description for 'baidu.uid.default.timeBits'"
   },
   {
-    "name": "baidu.uid.CachedUidGenerator.enable",
-    "type": "java.lang.Boolean",
+    "name": "baidu.uid.generator.type",
+    "type": "com.baidu.fsg.uid.config.UidTypeEnum",
     "description": "A description for 'baidu.uid.CachedUidGenerator.enable'"
   },
   {

@@ -15,7 +15,8 @@ import com.baidu.fsg.uid.impl.CachedUidGenerator;
 import com.baidu.fsg.uid.worker.DisposableWorkerIdAssigner;
 
 @Configuration
-@EnableConfigurationProperties(CachedUidGeneratorProperties.class)
+@EnableConfigurationProperties({ CachedUidGeneratorProperties.class, DefaultUidGeneratorProperties.class,
+		SnowFlakeUidGeneratorProperties.class })
 @AutoConfigureAfter(SqlSessionFactory.class)
 public class CachedUidGeneratorAutoConfiguration {
 
@@ -30,7 +31,7 @@ public class CachedUidGeneratorAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
-	@ConditionalOnProperty("baidu.uid.CachedUidGenerator.enable")
+	@ConditionalOnProperty(prefix = "baidu.uid.generator", name = "type", havingValue = "cacheduid")
 	public CachedUidGenerator cachedUidGenerator(@Autowired DisposableWorkerIdAssigner disposableWorkerIdAssigner)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {

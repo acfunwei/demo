@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ public class DefaultUidGeneratorAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
+	@ConditionalOnProperty(prefix = "baidu.uid.generator", name = "type", havingValue = "defaultuid")
 	public DefaultUidGenerator defaultUidGenerator(WorkerIdAssigner workerIdAssigner) {
 		DefaultUidGenerator defaultUidGenerator = new DefaultUidGenerator();
 		defaultUidGenerator.setWorkerIdAssigner(workerIdAssigner);
