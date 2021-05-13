@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "baidu.uid.default.timeBits",
+    "type": "java.lang.String",
+    "description": "A description for 'baidu.uid.default.timeBits'"
+  },
+  {
+    "name": "baidu.uid.CachedUidGenerator.enable",
+    "type": "java.lang.Boolean",
+    "description": "A description for 'baidu.uid.CachedUidGenerator.enable'"
+  },
+  {
+    "name": "snow-flake.dataCenterId",
+    "type": "java.lang.Long",
+    "description": "A description for 'snow-flake.dataCenterId'"
+  },
+  {
+    "name": "snow-flake.machineId",
+    "type": "java.lang.Long",
+    "description": "A description for 'snow-flake.machineId'"
+  }
+]}

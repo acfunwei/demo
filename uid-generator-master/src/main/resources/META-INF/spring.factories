@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.baidu.fsg.uid.config.DefaultUidGeneratorAutoConfiguration,\
-com.baidu.fsg.uid.config.CachedUidGeneratorAutoConfiguration
+com.baidu.fsg.uid.config.CachedUidGeneratorAutoConfiguration,\
+com.baidu.fsg.uid.config.SnowFlakeUidGeneratorAutoConfiguration

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baidu.fsg.uid.impl.CachedUidGenerator;
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
+import com.baidu.fsg.uid.impl.SnowFlakeUidGenerator;
 import com.example.demo.entity.FbpEmployee;
 import com.example.demo.mapper.TestMapper;
 import com.example.demo.sys.service.FbpEmployeeService;
@@ -33,10 +34,28 @@ public class FbpEmployeeController {
 	private SqlSessionFactory sqlSessionFactory;
 	@Autowired
 	private TestMapper testMapper;
+	@Autowired
+	private SnowFlakeUidGenerator snowFlakeUidGenerator;
 
 	@RequestMapping("/insert")
 	public FbpEmployee insert(FbpEmployee employee) {
 		return fbpEmployeeService.insert(employee);
+	}
+
+	@RequestMapping("/snownextval")
+	public Map<String, Object> snownextval() {
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<Long> longs = new ArrayList<Long>(10 << (10 ^ 4));
+		System.out.println(10 << (10 ^ 4));
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
+		for (int i = 0, len = 10 << (10 ^ 4); i < len; i++) {
+			longs.add(snowFlakeUidGenerator.nextId());
+		}
+		stopWatch.stop();
+		System.out.println("生成" + (10 << (10 ^ 4)) + "id花费" + stopWatch.getTotalTimeMillis() + "毫秒");
+		result.put("nextval", longs);
+		return result;
 	}
 
 	@RequestMapping("/nextval")
