@@ -37,14 +37,14 @@ public class FbpEmployeeController {
 	public Map<String, Object> nextval() {
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<Long> longs = new ArrayList<Long>(10 << (10 ^ 4));
-		System.out.println(10 << (10 ^ 4));
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
 		for (int i = 0, len = 10 << (10 ^ 4); i < len; i++) {
 			longs.add(uidGenerator.getUID());
 		}
 		stopWatch.stop();
-		System.out.println("生成" + (10 << (10 ^ 4)) + "id花费" + stopWatch.getTotalTimeMillis() + "毫秒");
+		String msg = "生成" + (10 << (10 ^ 4)) + "条id,一共花费" + stopWatch.getTotalTimeMillis() + "毫秒";
+		result.put("msg", msg);
 		result.put("nextval", longs);
 		return result;
 	}
