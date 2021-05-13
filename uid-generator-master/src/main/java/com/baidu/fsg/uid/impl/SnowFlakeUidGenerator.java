@@ -2,13 +2,16 @@ package com.baidu.fsg.uid.impl;
 
 import org.springframework.util.Assert;
 
+import com.baidu.fsg.uid.UidGenerator;
+import com.baidu.fsg.uid.exception.UidGenerateException;
+
 /**
  * 雪花算法
  * 
  * @author Administrator
  *
  */
-public class SnowFlakeUidGenerator {
+public class SnowFlakeUidGenerator implements UidGenerator {
 	/**
 	 * 起始的时间戳
 	 */
@@ -100,6 +103,17 @@ public class SnowFlakeUidGenerator {
 				| dataCenterId << DATA_CENTER_LEFT // 数据中心部分
 				| machineId << MACHINE_LEFT // 机器标识部分
 				| sequence; // 序列号部分
+	}
+
+	@Override
+	public long getUID() throws UidGenerateException {
+		return this.nextId();
+	}
+
+	@Override
+	public String parseUID(long uid) {
+		// TODO 未实现
+		return null;
 	}
 
 }

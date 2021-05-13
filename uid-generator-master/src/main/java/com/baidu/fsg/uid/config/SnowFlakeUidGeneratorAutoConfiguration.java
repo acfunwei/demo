@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.baidu.fsg.uid.UidGenerator;
 import com.baidu.fsg.uid.impl.SnowFlakeUidGenerator;
 
 @Configuration
@@ -19,7 +20,7 @@ public class SnowFlakeUidGeneratorAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnProperty(prefix = "baidu.uid.generator", name = "type", havingValue = "snowflakeuid")
-	public SnowFlakeUidGenerator snowFlakeUidGenerator() {
+	public UidGenerator uidGenerator() {
 		return new SnowFlakeUidGenerator(snowFlakeUidGeneratorProperties.getDataCenterId(),
 				snowFlakeUidGeneratorProperties.getMachineId());
 	}

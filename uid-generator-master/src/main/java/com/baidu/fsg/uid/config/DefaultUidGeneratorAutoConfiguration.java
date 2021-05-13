@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.baidu.fsg.uid.UidGenerator;
 import com.baidu.fsg.uid.impl.DefaultUidGenerator;
 import com.baidu.fsg.uid.worker.DisposableWorkerIdAssigner;
 import com.baidu.fsg.uid.worker.WorkerIdAssigner;
@@ -31,7 +32,7 @@ public class DefaultUidGeneratorAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnProperty(prefix = "baidu.uid.generator", name = "type", havingValue = "defaultuid")
-	public DefaultUidGenerator defaultUidGenerator(WorkerIdAssigner workerIdAssigner) {
+	public UidGenerator uidGenerator(WorkerIdAssigner workerIdAssigner) {
 		DefaultUidGenerator defaultUidGenerator = new DefaultUidGenerator();
 		defaultUidGenerator.setWorkerIdAssigner(workerIdAssigner);
 		if (StringUtils.isNotBlank(defaultUidGeneratorProperties.getEpochStr())) {

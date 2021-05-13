@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.baidu.fsg.uid.UidGenerator;
 import com.baidu.fsg.uid.impl.CachedUidGenerator;
 import com.baidu.fsg.uid.worker.DisposableWorkerIdAssigner;
 
@@ -32,7 +33,7 @@ public class CachedUidGeneratorAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnProperty(prefix = "baidu.uid.generator", name = "type", havingValue = "cacheduid")
-	public CachedUidGenerator cachedUidGenerator(@Autowired DisposableWorkerIdAssigner disposableWorkerIdAssigner)
+	public UidGenerator uidGenerator(@Autowired DisposableWorkerIdAssigner disposableWorkerIdAssigner)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
 		CachedUidGenerator cachedUidGenerator = new CachedUidGenerator();
