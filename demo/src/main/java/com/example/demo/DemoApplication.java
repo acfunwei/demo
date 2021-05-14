@@ -11,7 +11,7 @@ import com.alibaba.druid.stat.DruidStatManagerFacade;
 
 @SpringBootApplication
 @RestController
-@MapperScan({ "com.example.demo.mapper", "com.baidu.fsg.uid.worker.dao", "com.quartz.mapper" })
+@MapperScan({ "com.example.demo.mapper", "com.baidu.fsg.uid.worker.dao" })
 @ComponentScan("com.*")
 public class DemoApplication {
 
